@@ -77,22 +77,25 @@ $(document).ready(function () {
     tabs(zb,zbmenu);
 
     //购物车
-    $(".nk_rightRight").on("mouseenter.f",function () {
-        $(".cart").css("padding","15px 0 0").slideDown("slow");
+   let gwt;
+    $(".nk_rightRight").on("mouseenter",function () {
+        gwt=setTimeout(function () {
+            $(".cart").css("padding","15px 0 0").stop(true,true).slideDown("fast");
+        },300)
     }).on("mouseleave",function () {
-        $(".cart").slideUp("fast");
+        clearTimeout(gwt);
+        $(".cart").stop(true,true).slideUp("fast");
     })
 
 
     //nav
 
     $(".nav").on("mouseleave",function () {
-        $(this).find(".navbox").slideUp("slow");
+        $(this).find(".navbox").stop(true,true).slideUp("fast");
     });
-
     $(".navtab").each(function () {
         $(this).on("mouseenter",function () {
-            $(this).siblings(".navbox").slideDown("slow");
+            $(this).siblings(".navbox").stop(true,true).slideDown("fast");
             let nvaindex=$(this).index(".navtab");
             $(this).addClass("active").siblings().removeClass("active");
             $(".navmenu").eq(nvaindex).show().siblings().hide();
@@ -101,7 +104,7 @@ $(document).ready(function () {
 
     $(".linlei").each(function () {
         $(this).on("mouseenter",function () {
-            $(this).siblings(".navbox").slideUp("slow");
+            $(this).siblings(".navbox").stop(true,true).slideUp("fast");
         })
     })
 
